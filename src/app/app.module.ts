@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {NgBootstrapModule} from './sharedModules/ng-bootstrap.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { OpdrachtModule } from './opdracht/opdracht.module';
+import { HistoriekModule } from './historiek/historiek.module';
+import { BeloningModule } from './beloning/beloning.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,11 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgBootstrapModule
+    NgBootstrapModule,
+    OpdrachtModule,
+    HistoriekModule,
+    BeloningModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
