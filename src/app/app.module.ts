@@ -9,6 +9,7 @@ import { OpdrachtModule } from './opdracht/opdracht.module';
 import { HistoriekModule } from './historiek/historiek.module';
 import { BeloningModule } from './beloning/beloning.module';
 import { LoginModule } from './login/login.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginModule } from './login/login.module';
     OpdrachtModule,
     HistoriekModule,
     BeloningModule,
-    LoginModule
+    LoginModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
