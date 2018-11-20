@@ -12,11 +12,15 @@ import {BeloningenService} from '../services/beloningen.service';
 export class BeloningComponent implements OnInit {
 
   totalBeloningen;
+  users$: Observable<any>;
 
-  constructor(private beloginService: BeloningenService) { }
+
+  constructor(private beloningService: BeloningenService) { }
 
   ngOnInit() {
-    this.beloginService.getBeloningen().subscribe(response => this.totalBeloningen);
+    this.users$ = this.beloningService.getBeloningen();
+    this.beloningService.getBeloningen().subscribe(response => this.totalBeloningen = (response));
+    console.log(this.totalBeloningen);
   }
 
 }

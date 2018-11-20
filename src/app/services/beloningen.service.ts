@@ -11,6 +11,7 @@ import {HttpClient} from '@angular/common/http';
 export class BeloningenService {
 
   readonly BELONING_URL = 'http://localhost:3000/beloningen';
+
   constructor(private http: HttpClient) {
   }
 
