@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService} from '../auth.service';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { AuthService} from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private Auth: AuthService ) { }
+  constructor( private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
     const username = target.querySelector('#gebruikersnaam').value;
     const paswoord = target.querySelector('#paswoord').value;
 
-    this.Auth.getUserDetails(username, paswoord);
     console.log(username, paswoord);
 
   }
