@@ -18,8 +18,8 @@ export class GebruikerService {
   }
 
 
-  getOpdrachtByOpdrachtId(): Observable<any> {
-    return this.http.get<any>(this.OPDRACHT_URL);
+  getOpdrachtByOpdrachtId(id): Observable<any> {
+    return this.http.get<any>(id);
   }
   getOpdrachtByGebruikerdId(): Observable<any> {
     return this.http.get<any>(this.VOLTOOIDEOPDRACHT_ULR);

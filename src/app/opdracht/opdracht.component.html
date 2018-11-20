@@ -19,4 +19,31 @@
     </tbody>
   </table>
 </div>
+<h3>Toevoegen van opdrachten</h3>
+<div class="container">
+  <form #contactForm="ngForm" (submit)="addUser(contactForm.value)">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" class="form-control"
+             required
+             minlength="3"
+             name="myName"
+             #myName="ngModel"
+             [(ngModel)]="user.name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" class="form-control"
+             required
+             pattern="\S+@\S+\.\S+"
+             name="myEmail"
+             #myEmail="ngModel"
+             [(ngModel)]="user.email">
+    </div>
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
+  </form>
+</div>
+<!--<pre> {{ opdrachten$| async |json }}</pre>-->
 

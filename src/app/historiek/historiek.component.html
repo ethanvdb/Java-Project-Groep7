@@ -11,8 +11,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let opdracht  of (voltooideOpdrachten$ |async)">
-      <td>{{ opdracht.uitleg }}</td>
+    <tr *ngFor="let voltooideOpdracht  of (voltooideOpdrachten$ |async)">
+      <td>{{ voltooideOpdracht.uitleg }}</td>
     </tr>
     </tbody>
   </table>
