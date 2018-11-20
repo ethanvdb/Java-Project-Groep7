@@ -3,49 +3,15 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Uitleg</th>
       <th scope="col">Aantal punten</th>
       <th scope="col">Gedaan?</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Schrijf een blog over jezelf in kader van het bedrijf.</td>
-      <td>50</td>
-      <td>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i></button>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Carpool minstens 20 keer.</td>
-      <td>10</td>
-      <td>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i></button>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Netwerk event bijwonen</td>
-      <td>10</td>
-      <td>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i></button>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td>Netwerk event organiseren.</td>
-      <td>25</td>
-      <td>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i></button>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">5</th>
-      <td>Kom met de fiets naar het werk.</td>
-      <td>1</td>
+    <tr *ngFor="let opdracht  of (opdrachten$ |async)">
+      <td>{{ opdracht.uitleg}}</td>
+      <td>{{ opdracht.punten}}</td>
       <td>
         <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i></button>
       </td>
