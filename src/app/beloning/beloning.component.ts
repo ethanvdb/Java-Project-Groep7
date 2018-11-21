@@ -13,7 +13,10 @@ export class BeloningComponent implements OnInit {
 
   totalBeloningen;
   users$: Observable<any>;
-
+  beloning = {
+    uitleg: '',
+    punten: ''
+  };
 
   constructor(private beloningService: BeloningenService) { }
 

@@ -19,16 +19,25 @@
     </tbody>
   </table>
 </div>
-<h3>Beloning toevoegen</h3>
+<h3>Toevoegen van opdrachten</h3>
 <div class="container">
-  <form>
+  <form #contactForm="ngForm" (submit)="addBeloning(contactForm.value)">
     <div class="form-group">
-      <label for="naam">Naam beloning</label>
-      <input type="text" id="naam" class="form-control">
+      <label for="naam">Uitleg</label>
+      <input type="text" id="naam" class="form-control"
+             required
+             minlength="3"
+             name="uitleg"
+             #myNaam="ngModel"
+             [(ngModel)]="opdracht.uitleg">
     </div>
     <div class="form-group">
-      <label for="aantalPunten">Aantal punten</label>
-      <input type="number" id="aantalPunten" class="form-control">
+      <label for="aantalPunten">Punten</label>
+      <input type="email" id="aantalPunten" class="form-control"
+             required
+             name="punten"
+             #myPunten="ngModel"
+             [(ngModel)]="opdracht.punten">
     </div>
     <button type="submit" class="btn btn-primary">
       Submit

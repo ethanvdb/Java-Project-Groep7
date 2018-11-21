@@ -26,7 +26,7 @@ export class OpdrachtComponent implements OnInit {
   }
 
   addOpdracht(form){
-    this.opdrachtService.addOpdracht(form).subscribe(value=>console.log(value));
+    this.opdrachtService.addOpdracht(form).subscribe(value => console.log(value));
     this.haalOpdrachtenOp();
   }
 
