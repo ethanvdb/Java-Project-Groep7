@@ -14,16 +14,35 @@ export class BeloningComponent implements OnInit {
   totalBeloningen;
   users$: Observable<any>;
   beloning = {
+<<<<<<< HEAD
     uitleg: '',
     punten: ''
   };
+=======
+    naam: '',
+    aantalPunten: ''
+  };
+
+>>>>>>> beloning post request
 
   constructor(private beloningService: BeloningenService) { }
 
   ngOnInit() {
+    this.haalBeloningenOp();
+  }
+
+  addBeloning(form){
+    this.beloningService.addBeloning(form).subscribe(value=>console.log(value));
+    this.haalBeloningenOp();
+  }
+
+  haalBeloningenOp(){
     this.users$ = this.beloningService.getBeloningen();
     this.beloningService.getBeloningen().subscribe(response => this.totalBeloningen = (response));
-    console.log(this.totalBeloningen);
+
+    this.beloning = {
+      naam: '',
+      aantalPunten: ''
+    };
   }
-x
 }
