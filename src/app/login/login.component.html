@@ -1,12 +1,12 @@
 <h2 class="p-2">Login</h2>
-<form (submit)="loginUser($event)">
+<form [formGroup]="loginForm" >
   <div class="form-group">
     <label for="gebruikersnaam">Gebruikersnaam</label>
-    <input type="text" class="form-control" id="gebruikersnaam" aria-describedby="gebruikersnaamhelp" placeholder="Vul gebruikersnaam in">
+    <input formControlName="naam" type="text" class="form-control" id="gebruikersnaam" aria-describedby="gebruikersnaamhelp" placeholder="Vul gebruikersnaam in">
   </div>
   <div class="form-group">
     <label for="paswoord">Paswoord</label>
-    <input type="password" class="form-control" id="paswoord" placeholder="Paswoord">
+    <input formControlName="passwoord" type="password" class="form-control" id="paswoord" placeholder="Paswoord">
   </div>
-  <button type="submit" class="btn btn-primary">Login</button>
+  <button  class="btn btn-primary" (click)="login()">Login</button>
 </form>
