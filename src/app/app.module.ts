@@ -10,8 +10,8 @@ import { HistoriekModule } from './historiek/historiek.module';
 import { BeloningModule } from './beloning/beloning.module';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { CommonModule  } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { GebruikerService } from './gebruiker.service'
 
 @NgModule({
   declarations: [
@@ -28,9 +28,9 @@ import { CommonModule  } from '@angular/common';
     LoginModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [GebruikerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,6 +20,29 @@
   </table>
 </div>
 <h3>Toevoegen van opdrachten</h3>
-<hr>
-
+<div class="container">
+  <form #contactForm="ngForm" (submit)="addOpdracht(contactForm.value)">
+    <div class="form-group">
+      <label for="naam">Uitleg</label>
+      <input type="text" id="naam" class="form-control"
+             required
+             minlength="3"
+             name="uitleg"
+             #myNaam="ngModel"
+             [(ngModel)]="opdracht.uitleg">
+    </div>
+    <div class="form-group">
+      <label for="aantalPunten">Punten</label>
+      <input type="email" id="aantalPunten" class="form-control"
+             required
+             name="punten"
+             #myPunten="ngModel"
+             [(ngModel)]="opdracht.punten">
+    </div>
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
+  </form>
+</div>
 <!--<pre> {{ opdrachten$| async |json }}</pre>-->
+

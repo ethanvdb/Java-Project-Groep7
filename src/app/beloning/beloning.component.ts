@@ -22,5 +22,5 @@ export class BeloningComponent implements OnInit {
     this.beloningService.getBeloningen().subscribe(response => this.totalBeloningen = (response));
     console.log(this.totalBeloningen);
   }
-
+x
 }

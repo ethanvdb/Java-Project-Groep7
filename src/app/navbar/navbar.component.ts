@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import {GebruikerService} from "../gebruiker.service";
+
+
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +12,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   isCollapsed = true; // true -> verberg menu, false -> toon menu
+  isLoggedIn = false;
+  isLoggedIn$: Observable<any> = Observable.create(
+    function(obs){
+      obs.next(localStorage.getItem('gebruiker'));
+    }
+  );
 
-  constructor() { }
+
+  constructor() {
+    this.isLoggedIn$.subscribe(value=>{
+      console.log(value);
+      if(value){
+        this.isLoggedIn = true;
+      }
+    });
+  }
 
   ngOnInit() {
   }
+
+  logout(){
+    localStorage.removeItem('gebruiker');
+    window.location.reload();
+  }
+
 
 }

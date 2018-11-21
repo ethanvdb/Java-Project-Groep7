@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {GebruikerService} from "../gebruiker.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,18 +10,32 @@ import { HttpClient} from '@angular/common/http';
   styles: []
 })
 export class LoginComponent implements OnInit {
+  isLoggedIn = localStorage.getItem('gebruiker');
 
-  constructor( private http: HttpClient) { }
+  loginForm:FormGroup = new FormGroup({
+    naam:new FormControl(null),
+    passwoord:new FormControl(null)
+  });
+
+  constructor( private http: HttpClient, private _gebruikerService: GebruikerService, private router:Router) { }
 
   ngOnInit() {
   }
-  loginUser(event) {
-    event.preventDefault();
-    const target = event.target;
-    const username = target.querySelector('#gebruikersnaam').value;
-    const paswoord = target.querySelector('#paswoord').value;
 
-    console.log(username, paswoord);
+
+  login(){
+    if(!this.loginForm.valid){
+      console.log('Invalid');
+      return;
+    }
+
+    //console.log(JSON.stringify(this.loginForm.value))
+    console.log("logged id");
+
+    this._gebruikerService.login(JSON.stringify(this.loginForm.value));
+    window.location.reload();
+    this.router.navigateByUrl('/beloning');
+
 
   }
 
