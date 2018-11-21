@@ -14,16 +14,10 @@ export class BeloningComponent implements OnInit {
   totalBeloningen;
   users$: Observable<any>;
   beloning = {
-<<<<<<< HEAD
-    uitleg: '',
-    punten: ''
-  };
-=======
     naam: '',
     aantalPunten: ''
   };
 
->>>>>>> beloning post request
 
   constructor(private beloningService: BeloningenService) { }
 
