@@ -14,12 +14,30 @@ export class OpdrachtComponent implements OnInit {
   totalOpdrachten;
   opdrachten$: Observable<any>;
 
+  opdracht = {
+    uitleg: '',
+    punten: ''
+  };
+
   constructor(private opdrachtService: OpdrachtenService) { }
 
   ngOnInit() {
+    this.haalOpdrachtenOp();
+  }
+
+  addOpdracht(form){
+    this.opdrachtService.addOpdracht(form).subscribe(value=>console.log(value));
+    this.haalOpdrachtenOp();
+  }
+
+
+  haalOpdrachtenOp(){
     this.opdrachten$ = this.opdrachtService.getOpdrachten();
     this.opdrachtService.getOpdrachten().subscribe(response => this.totalOpdrachten = (response));
-    console.log(this.totalOpdrachten);
+    this.opdracht = {
+      uitleg: '',
+      punten: ''
+    };
   }
 
 }
