@@ -22,9 +22,6 @@ export class HistoriekComponent implements OnInit {
 
   ngOnInit() {
     this.voltooideOpdrachten$ = this.gebruikerService.getOpdrachtByGebruikerdId();
-    // this.voltooideOpdrachten$.map(response => {
-    //   this.opdrachten$.append(this.gebruikerService.getOpdrachtByOpdrachtId(response.opdrachtId));
-    // });
     this.user$ = this.gebruikerService.getGebruikerById();
     console.log(this.user$);
   }
