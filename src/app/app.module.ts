@@ -10,6 +10,7 @@ import { HistoriekModule } from './historiek/historiek.module';
 import { BeloningModule } from './beloning/beloning.module';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     HistoriekModule,
     BeloningModule,
     LoginModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
