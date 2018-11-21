@@ -13,6 +13,8 @@ export class BeloningComponent implements OnInit {
 
   totalBeloningen;
   users$: Observable<any>;
+  usersByName$: Observable<any>;
+
   beloning = {
     naam: '',
     aantalPunten: ''
@@ -27,6 +29,11 @@ export class BeloningComponent implements OnInit {
 
   addBeloning(form){
     this.beloningService.addBeloning(form).subscribe(value=>console.log(value));
+    this.haalBeloningenOp();
+  }
+
+  verwijderBeloning(id){
+    this.beloningService.verwijderBeloning(id);
     this.haalBeloningenOp();
   }
 

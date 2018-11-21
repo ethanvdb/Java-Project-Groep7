@@ -11,13 +11,14 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class BeloningenService {
 
-  readonly BELONING_URL = 'http://localhost:3000/beloningen';
+  readonly BELONING_URL = 'http://localhost:3000/beloningen/';
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
       'Authorization': 'my-auth-token'
     })
+
   };
 
   constructor(private http: HttpClient) {
@@ -29,5 +30,10 @@ export class BeloningenService {
 
   addBeloning(beloning){
     return this.http.post<any>(this.BELONING_URL, beloning, this.httpOptions);
+  }
+
+  verwijderBeloning(beloning){
+    console.log(this.BELONING_URL + beloning);
+    return this.http.delete<any>(this.BELONING_URL + beloning, this.httpOptions);
   }
 }
