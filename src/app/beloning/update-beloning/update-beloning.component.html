@@ -1,0 +1,25 @@
+<h3>Aanpassen van beloningen</h3>
+<div class="container">
+  <form #contactForm="ngForm" (submit)="addBeloning(contactForm.value)">
+    <div class="form-group">
+      <label for="naam">Naam beloning</label>
+      <input type="text" id="naam" class="form-control"
+        name="naam"
+        #myNaam="ngModel"
+        [(ngModel)]="beloning.naam"
+        value="beloning.naam">
+    </div>
+    <div class="form-group">
+      <label for="aantalPunten">Aantal punten</label>
+      <input type="number" id="aantalPunten" class="form-control"
+        required
+        name="aantalPunten"
+        #myPunten="ngModel"
+        [(ngModel)]="beloning.aantalPunten"
+        value="beloning.aantalPunten">
+    </div>
+    <button type="submit" class="btn btn-primary">
+      Pas aan
+    </button>
+  </form>
+</div>

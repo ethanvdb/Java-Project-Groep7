@@ -28,12 +28,21 @@ export class BeloningenService {
     return this.http.get<any>(this.BELONING_URL);
   }
 
+  getBeloning(id) {
+    console.log(this.BELONING_URL + id)
+    return this.http.get<any>(this.BELONING_URL + id).toPromise();
+  }
+
   addBeloning(beloning){
     return this.http.post<any>(this.BELONING_URL, beloning, this.httpOptions);
   }
 
+  updateBeloning(beloning, id){
+    return this.http.patch<any>(this.BELONING_URL + id, beloning, this.httpOptions);
+  }
+
   verwijderBeloning(beloning){
     console.log(this.BELONING_URL + beloning);
-    return this.http.delete<any>(this.BELONING_URL + beloning, this.httpOptions);
+    return this.http.delete<any>(this.BELONING_URL + beloning, this.httpOptions).toPromise();
   }
 }

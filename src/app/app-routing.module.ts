@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { OpdrachtComponent} from './opdracht/opdracht.component';
 import {HistoriekComponent} from './historiek/historiek.component';
 import { BeloningComponent} from './beloning/beloning.component';
+import { UpdateBeloningComponent} from './beloning/update-beloning/update-beloning.component';
+
 import {LoginComponent} from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
@@ -12,6 +14,7 @@ const routes: Routes = [
   {path: 'beloning', component: BeloningComponent},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'updateBeloning/:id', component: UpdateBeloningComponent},
 
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
