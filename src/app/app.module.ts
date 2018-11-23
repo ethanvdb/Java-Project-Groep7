@@ -12,7 +12,7 @@ import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GebruikerService } from './gebruiker.service';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [

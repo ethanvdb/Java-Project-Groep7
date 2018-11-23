@@ -13,21 +13,21 @@ import { Router } from '@angular/router';
 export class UpdateBeloningComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private beloningService: BeloningenService, private router: Router) { }
-  id: string; 
+  id: string;
   beloning: object;
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.id = params.get("id");
-    })
+      this.id = params.get('id');
+    });
     console.log(this.id);
     this.beloningService.getBeloning(this.id).then(data => this.beloning = data);
     console.log(this.beloning);
   }
 
-  addBeloning(form){
-    this.beloningService.updateBeloning(form, this.id).subscribe(value=>console.log(value));
-    this.router.navigate(["beloning"]);
+  addBeloning(form) {
+    this.beloningService.updateBeloning(form, this.id).subscribe(value => console.log(value));
+    this.router.navigate(['beloning']);
   }
 
 }

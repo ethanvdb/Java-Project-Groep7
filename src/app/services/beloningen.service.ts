@@ -29,19 +29,19 @@ export class BeloningenService {
   }
 
   getBeloning(id) {
-    console.log(this.BELONING_URL + id)
+    console.log(this.BELONING_URL + id);
     return this.http.get<any>(this.BELONING_URL + id).toPromise();
   }
 
-  addBeloning(beloning){
+  addBeloning(beloning) {
     return this.http.post<any>(this.BELONING_URL, beloning, this.httpOptions);
   }
 
-  updateBeloning(beloning, id){
+  updateBeloning(beloning, id) {
     return this.http.patch<any>(this.BELONING_URL + id, beloning, this.httpOptions);
   }
 
-  verwijderBeloning(beloning){
+  verwijderBeloning(beloning) {
     console.log(this.BELONING_URL + beloning);
     return this.http.delete<any>(this.BELONING_URL + beloning, this.httpOptions).toPromise();
   }

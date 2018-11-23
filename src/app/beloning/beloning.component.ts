@@ -27,25 +27,24 @@ export class BeloningComponent implements OnInit {
     this.haalBeloningenOp();
   }
 
-  addBeloning(form){
-    this.beloningService.addBeloning(form).subscribe(value=>console.log(value));
+  addBeloning(form) {
+    this.beloningService.addBeloning(form).subscribe(value => console.log(value));
     this.haalBeloningenOp();
   }
 
-  verwijderBeloning(id){
-    if(confirm("Ben je zeker?"))
-    {
+  verwijderBeloning(id) {
+    if (confirm('Ben je zeker?')) {
       this.beloningService.verwijderBeloning(id);
       this.haalBeloningenOp();
     }
-    
   }
 
-  updateBeloning(id){
-      this.router.navigate(["/updateBeloning/" + id]);
+  updateBeloning(id) {
+      this.router.navigate(['/updateBeloning/' + id]);
+      this.haalBeloningenOp();
   }
 
-  haalBeloningenOp(){
+  haalBeloningenOp() {
     this.users$ = this.beloningService.getBeloningen();
     this.beloningService.getBeloningen().subscribe(response => this.totalBeloningen = (response));
 
