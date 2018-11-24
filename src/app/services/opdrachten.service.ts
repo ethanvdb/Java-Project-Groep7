@@ -31,4 +31,9 @@ export class OpdrachtenService {
   addOpdracht(opdracht){
     return this.http.post<any>(this.OPDRACHT_URL, opdracht, this.httpOptions);
   }
+
+  deleteOpdracht(_id){
+    const DELETE_URL = this.OPDRACHT_URL + "/" + _id.toString();
+    return this.http.delete<any>(DELETE_URL);
+  }
 }

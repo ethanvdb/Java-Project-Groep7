@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {BeloningenService} from '../services/beloningen.service';
 import {OpdrachtenService} from '../services/opdrachten.service';
 
@@ -19,14 +19,24 @@ export class OpdrachtComponent implements OnInit {
     punten: ''
   };
 
-  constructor(private opdrachtService: OpdrachtenService) { }
+
+
+  constructor(private opdrachtService: OpdrachtenService) {
+  }
 
   ngOnInit() {
     this.haalOpdrachtenOp();
   }
 
+
   addOpdracht(form){
     this.opdrachtService.addOpdracht(form).subscribe(value=>console.log(value));
+    this.haalOpdrachtenOp();
+  }
+
+  verwijderOpdracht(opdracht){
+    const _id = opdracht._id;
+    this.opdrachtService.deleteOpdracht(_id).subscribe();
     this.haalOpdrachtenOp();
   }
 

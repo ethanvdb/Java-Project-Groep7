@@ -17,6 +17,12 @@ export class GebruikerService {
     })
   };
 
+  isLoggedIn$: Observable<any> = Observable.create(
+    function(obs){
+      obs.next(JSON.parse(localStorage.getItem('gebruiker')));
+    }
+  );
+
   url = "http://localhost:3000/Gebruikers/login";
   gebruiker: any;
   gebruiker$;

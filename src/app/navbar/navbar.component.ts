@@ -13,16 +13,11 @@ import {GebruikerService} from "../gebruiker.service";
 export class NavbarComponent implements OnInit {
   isCollapsed = true; // true -> verberg menu, false -> toon menu
   isLoggedIn = false;
-  isLoggedIn$: Observable<any> = Observable.create(
-    function(obs){
-      obs.next(localStorage.getItem('gebruiker'));
-    }
-  );
 
 
-  constructor() {
-    this.isLoggedIn$.subscribe(value=>{
-      console.log(value);
+
+  constructor(private gebruikerService: GebruikerService) {
+    this.gebruikerService.isLoggedIn$.subscribe(value=>{
       if(value){
         this.isLoggedIn = true;
       }
