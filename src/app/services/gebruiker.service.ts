@@ -11,8 +11,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class GebruikerService {
 
-  readonly LOGIN_URL = 'http://localhost:3000/Gebruikers/login';
-  readonly GEBRUIKER_URL = 'http://localhost:3000/gebruikers/';
+  readonly LOGIN_URL = "http://localhost:3000/Gebruikers/login";
+  readonly GEBRUIKER_URL = 'http://localhost:3000/Gebruikers/';
   readonly VOLTOOIDEOPDRACHT_URL = 'http://localhost:3000/voltooideOpdrachten/gebruiker/';
   readonly OPDRACHT_URL;
 
@@ -29,7 +29,7 @@ export class GebruikerService {
   };
 
   isLoggedIn$: Observable<any> = Observable.create(
-    function(obs){
+    function(obs) {
       obs.next(JSON.parse(localStorage.getItem('gebruiker')));
     }
   );
@@ -39,12 +39,26 @@ export class GebruikerService {
   opdracht$;
 
 
-  login(body:any){
+  login(body: any) {
     this.gebruiker$ = this.http.post<any>(this.LOGIN_URL, body, this.httpOptions);
-    this.gebruiker$.subscribe(val=>{
-      this.gebruiker = (val);
-      localStorage.setItem('gebruiker', JSON.stringify(this.gebruiker));
-    });
+    this.updateGebruiker();
+  }
+
+  updateGebruiker() {
+    if(this.gebruiker$) {
+      this.gebruiker$.subscribe(val => {
+        this.gebruiker = (val);
+        console.log(val.behaaldePunten);
+        localStorage.setItem('gebruiker', JSON.stringify(this.gebruiker));
+      });
+    }else{
+      this.isLoggedIn$.subscribe(val=>{
+        this.getGebruikerById(val._id).subscribe(val=>{
+          this.gebruiker = (val);
+          localStorage.setItem('gebruiker', JSON.stringify(this.gebruiker));
+        });
+      })
+    }
   }
 
   getOpdrachtByOpdrachtId(id): Observable<any> {
@@ -74,4 +88,12 @@ export class GebruikerService {
        });
      });
     };
+
+  koopOpdracht(gebruikerId, punten){
+    this.getGebruikerById(gebruikerId).subscribe(val=>{
+      val.behaaldePunten -= punten;
+      this.http.patch<any>(this.GEBRUIKER_URL + gebruikerId, val).subscribe();
+    });
+    this.updateGebruiker();
+  }
 }

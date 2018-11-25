@@ -5,18 +5,18 @@
     <tr>
       <th scope="col">Product</th>
       <th scope="col">Aantal punten</th>
-      <th scope="col">Kopen</th>
-      <th scope="col">Acties</th>
+      <th scope="col"  *ngIf="(user$ |async)?.niveau == 0">Kopen</th>
+      <th scope="col"  *ngIf="(user$ |async)?.niveau == 1">Acties</th>
     </tr>
     </thead>
     <tbody >
-    <tr *ngFor="let beloning  of (users$ |async)">
+    <tr *ngFor="let beloning  of (beloningen$ |async)">
       <td>{{ beloning.naam }}</td>
       <td>{{ beloning.aantalPunten}}</td>
-      <td>
-        <button type="submit" class="btn btn-success"><i class="fas fa-shopping-cart"></i></button>
+      <td  *ngIf="(user$ |async)?.niveau == 0">
+        <button type="submit" class="btn btn-success" (click)="beloningKopen(beloning.aantalPunten)"><i class="fas fa-shopping-cart"></i></button>
       </td>
-      <td>
+      <td  *ngIf="(user$ |async)?.niveau == 1">
         <button type="button" class="btn btn-danger mr-2" (click)="verwijderBeloning(beloning._id)"><i class="fas fa-times"i></i></button>
         <button type="button" class="btn btn-info" (click)="updateBeloning(beloning._id)"><i class="fas fa-pen"i></i></button>
       </td>
@@ -24,29 +24,32 @@
     </tbody>
   </table>
 </div>
-<h3>Toevoegen van beloningen</h3>
-<div class="container">
-  <form #contactForm="ngForm" (submit)="addBeloning(contactForm.value)">
-    <div class="form-group">
-      <label for="naam">Naam beloning</label>
-      <input type="text" id="naam" class="form-control"
-        name="naam"
-        #myNaam="ngModel"
-        [(ngModel)]="beloning.naam">
-    </div>
-    <div class="form-group">
-      <label for="aantalPunten">Aantal punten</label>
-      <input type="number" id="aantalPunten" class="form-control"
-        required
-        name="aantalPunten"
-        #myPunten="ngModel"
-        [(ngModel)]="beloning.aantalPunten">
-    </div>
-    <button type="submit" class="btn btn-primary">
-      Voeg toe
-    </button>
-  </form>
+<div *ngIf="(user$ |async)?.niveau == 1">
+  <h3>Toevoegen van beloningen</h3>
+  <div class="container">
+    <form #contactForm="ngForm" (submit)="addBeloning(contactForm.value)">
+      <div class="form-group">
+        <label for="naam">Naam beloning</label>
+        <input type="text" id="naam" class="form-control"
+               name="naam"
+               #myNaam="ngModel"
+               [(ngModel)]="beloning.naam">
+      </div>
+      <div class="form-group">
+        <label for="aantalPunten">Aantal punten</label>
+        <input type="number" id="aantalPunten" class="form-control"
+               required
+               name="aantalPunten"
+               #myPunten="ngModel"
+               [(ngModel)]="beloning.aantalPunten">
+      </div>
+      <button type="submit" class="btn btn-primary">
+        Voeg toe
+      </button>
+    </form>
+  </div>
 </div>
+
 <!-- <pre>{{ totalBeloningen |json }}</pre> -->
 
 

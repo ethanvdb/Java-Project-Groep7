@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {BeloningenService} from '../services/beloningen.service';
+import {GebruikerService} from '../services/gebruiker.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +14,9 @@ import { Router } from '@angular/router';
 export class BeloningComponent implements OnInit {
 
   totalBeloningen;
-  users$: Observable<any>;
+  isLoggedIn: false;
+  beloningen$: Observable<any>;
+  user$;
 
   beloning = {
     naam: '',
@@ -21,7 +24,10 @@ export class BeloningComponent implements OnInit {
   };
 
 
-  constructor(private beloningService: BeloningenService, private router: Router) { }
+  constructor(private beloningService: BeloningenService, private router: Router, private gebruikerService: GebruikerService) {
+    this.user$ = this.gebruikerService.isLoggedIn$;
+    this.user$.subscribe();
+  }
 
   ngOnInit() {
     this.haalBeloningenOp();
@@ -45,12 +51,25 @@ export class BeloningComponent implements OnInit {
   }
 
   haalBeloningenOp() {
-    this.users$ = this.beloningService.getBeloningen();
+    this.beloningen$ = this.beloningService.getBeloningen();
     this.beloningService.getBeloningen().subscribe(response => this.totalBeloningen = (response));
 
     this.beloning = {
       naam: '',
       aantalPunten: ''
     };
+  }
+
+  beloningKopen(beloningPunten){
+    this.user$.subscribe(val=>{
+      let id = val._id;
+      let punten = val.behaaldePunten;
+      console.log(punten);
+      if(punten >= beloningPunten){
+        this.gebruikerService.koopOpdracht(id, beloningPunten);
+      }else{
+        alert("Niet genoeg punten!");
+      }
+    });
   }
 }
