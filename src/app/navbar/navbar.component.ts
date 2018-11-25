@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import {GebruikerService} from "../gebruiker.service";
+import {GebruikerService} from '../gebruiker.service';
 
 
 
@@ -19,8 +19,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(private gebruikerService: GebruikerService) {
     this.user$ = this.gebruikerService.isLoggedIn$;
-    this.user$.subscribe(value=>{
-      if(value){
+    this.user$.subscribe(value => {
+      if (value) {
         this.isLoggedIn = true;
       }
     });
@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('gebruiker');
     window.location.reload();
   }
