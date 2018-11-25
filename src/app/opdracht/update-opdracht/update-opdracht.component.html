@@ -1,0 +1,25 @@
+<h3>Aanpassen van Opdrachten</h3>
+<div class="container">
+  <form #contactForm="ngForm" (submit)="addOpdracht(contactForm.value)">
+    <div class="form-group">
+      <label for="uitleg">Naam Opdracht</label>
+      <input type="text" id="uitleg" class="form-control"
+             name="uitleg"
+             #myNaam="ngModel"
+             [(ngModel)]="opdracht.uitleg"
+             value="opdracht.uitleg">
+    </div>
+    <div class="form-group">
+      <label for="punten">Aantal punten</label>
+      <input type="number" id="punten" class="form-control"
+             required
+             name="punten"
+             #myPunten="ngModel"
+             [(ngModel)]="opdracht.punten"
+             value="opdracht.punten">
+    </div>
+    <button type="submit" class="btn btn-primary">
+      Pas aan
+    </button>
+  </form>
+</div>

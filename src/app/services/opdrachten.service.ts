@@ -12,7 +12,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class OpdrachtenService {
 
-  readonly OPDRACHT_URL = 'http://localhost:3000/opdrachten';
+  readonly OPDRACHT_URL = 'http://localhost:3000/opdrachten/';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,12 +28,21 @@ export class OpdrachtenService {
     return this.http.get<any>(this.OPDRACHT_URL);
   }
 
-  addOpdracht(opdracht){
+  getOpdracht(id) {
+    console.log(this.OPDRACHT_URL + id);
+    return this.http.get<any>(this.OPDRACHT_URL + id).toPromise();
+  }
+
+  addOpdracht(opdracht) {
     return this.http.post<any>(this.OPDRACHT_URL, opdracht, this.httpOptions);
   }
 
-  deleteOpdracht(_id){
-    const DELETE_URL = this.OPDRACHT_URL + "/" + _id.toString();
-    return this.http.delete<any>(DELETE_URL);
+  updateOpdracht(opdracht, id) {
+    return this.http.patch<any>(this.OPDRACHT_URL + id, opdracht, this.httpOptions);
+  }
+
+  verwijderOpdracht(opdracht) {
+    console.log(this.OPDRACHT_URL + opdracht);
+    return this.http.delete<any>(this.OPDRACHT_URL + opdracht, this.httpOptions).toPromise();
   }
 }
