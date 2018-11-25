@@ -41,10 +41,24 @@ export class GebruikerService {
 
   login(body:any){
     this.gebruiker$ = this.http.post<any>(this.LOGIN_URL, body, this.httpOptions);
-    this.gebruiker$.subscribe(val=>{
-      this.gebruiker = (val);
-      localStorage.setItem('gebruiker', JSON.stringify(this.gebruiker));
-    });
+    this.updateGebruiker();
+  }
+
+  updateGebruiker(){
+    if(this.gebruiker$){
+      this.gebruiker$.subscribe(val=>{
+        this.gebruiker = (val);
+        console.log(val.behaaldePunten);
+        localStorage.setItem('gebruiker', JSON.stringify(this.gebruiker));
+      });
+    }else{
+      this.isLoggedIn$.subscribe(val=>{
+        this.getGebruikerById(val._id).subscribe(val=>{
+          this.gebruiker = (val);
+          localStorage.setItem('gebruiker', JSON.stringify(this.gebruiker));
+        });
+      })
+    }
   }
 
   getOpdrachtByOpdrachtId(id): Observable<any> {
@@ -79,6 +93,7 @@ export class GebruikerService {
     this.getGebruikerById(gebruikerId).subscribe(val=>{
       val.behaaldePunten -= punten;
       this.http.patch<any>(this.GEBRUIKER_URL + gebruikerId, val).subscribe();
-    })
+    });
+    this.updateGebruiker();
   }
 }

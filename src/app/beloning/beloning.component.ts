@@ -63,10 +63,12 @@ export class BeloningComponent implements OnInit {
   beloningKopen(beloningPunten){
     this.user$.subscribe(val=>{
       let id = val._id;
-      let punten = val.punten;
+      let punten = val.behaaldePunten;
+      console.log(punten);
       if(punten >= beloningPunten){
-        console.log(id);
         this.gebruikerService.koopOpdracht(id, beloningPunten);
+      }else{
+        alert("Niet genoeg punten!");
       }
     });
   }
