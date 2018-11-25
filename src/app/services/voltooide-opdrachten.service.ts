@@ -19,6 +19,10 @@ export class VoltooideOpdrachtenService {
     return this.http.get<any>(this.GET_ALL_URL);
   }
 
+  getById(id): Observable<any>{
+    return this.http.get<any>(this.REJECT_URL + id);
+  }
+
   opdrachtGoedkeuren(id): Observable<any>{
     return this.http.patch<any>(this.ACCEPT_URL + id, null);
   }

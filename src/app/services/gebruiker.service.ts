@@ -64,4 +64,14 @@ export class GebruikerService {
   getGebruikerById(id): Observable<any> {
     return this.http.get<any>(this.GEBRUIKER_URL+id);
   }
+
+  voegPuntenToe(gebruikerId, opdrachtId){
+  this.http.get<any>("http://localhost:3000/Opdrachten/" + opdrachtId).subscribe(val=>{
+    let punten = val.punten;
+       this.http.get<any>(this.GEBRUIKER_URL+gebruikerId).subscribe(val =>{
+         val.behaaldePunten += punten;
+         this.http.patch<any>(this.GEBRUIKER_URL+gebruikerId, val).subscribe();
+       });
+     });
+    };
 }

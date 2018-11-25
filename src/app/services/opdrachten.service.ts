@@ -30,7 +30,7 @@ export class OpdrachtenService {
 
   getOpdracht(id) {
     console.log(this.OPDRACHT_URL + id);
-    return this.http.get<any>(this.OPDRACHT_URL + id).toPromise();
+    return this.http.get<any>(this.OPDRACHT_URL + id);
   }
 
   addOpdracht(opdracht) {

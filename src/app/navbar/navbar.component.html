@@ -6,13 +6,13 @@
 
   <div class="collapse navbar-collapse" id="navbarContent" [ngbCollapse]="isCollapsed" (click)="isCollapsed = !isCollapsed">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" *ngIf="isLoggedIn && (user$ |async).niveau == 1">
+      <li class="nav-item" *ngIf="(user$ |async)?.niveau == 1">
         <a class="nav-link" routerLink="/opdrachtAanvragen" routerLinkActive="active">Opdrachten aanvragen</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" routerLink="/opdracht" routerLinkActive="active">Opdrachten aanpassen</a>
       </li>
-      <li class="nav-item" *ngIf="isLoggedIn && (user$ |async).niveau == 0">
+      <li class="nav-item" *ngIf="(user$ |async)?.niveau == 0">
         <a *ngIf="isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/historiek">Historiek</a>
         <a *ngIf="!isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/login">Historiek</a>
       </li>

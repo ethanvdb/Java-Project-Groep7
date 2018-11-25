@@ -20,7 +20,7 @@ export class OpdrachtAanvragenComponent implements OnInit {
 
 
 
-  constructor(private voltooideOpdrachtenService: VoltooideOpdrachtenService, private gebruikerService: GebruikerService) { }
+  constructor(private voltooideOpdrachtenService: VoltooideOpdrachtenService, private gebruikerService: GebruikerService, private opdrachtenService: OpdrachtenService) { }
 
   ngOnInit() {
     this.haalOpdrachtenOp();
@@ -33,6 +33,11 @@ export class OpdrachtAanvragenComponent implements OnInit {
 
   opdrachtGoedkeuren(id){
     this.voltooideOpdrachtenService.opdrachtGoedkeuren(id).subscribe();
+    this.voltooideOpdrachtenService.getById(id).subscribe(val=>{
+      this.gebruikerService.voegPuntenToe(val.gebruikerId, val.opdrachtId);
+    });
+
+
     this.haalOpdrachtenOp();
   }
 

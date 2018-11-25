@@ -19,7 +19,7 @@ export class UpdateOpdrachtComponent implements OnInit {
       this.id = params.get('id');
     });
     console.log(this.id);
-    this.opdrachtService.getOpdracht(this.id).then(data => this.opdracht = data);
+    this.opdrachtService.getOpdracht(this.id).subscribe(data => this.opdracht = data);
   }
 
   addOpdracht(form) {
