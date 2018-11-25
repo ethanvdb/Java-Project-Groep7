@@ -62,7 +62,6 @@ export class BeloningComponent implements OnInit {
 
   beloningKopen(beloningPunten){
     this.user$.subscribe(val=>{
-      console.log("hallo");
       let id = val._id;
       let punten = val.punten;
       if(punten >= beloningPunten){

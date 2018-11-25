@@ -19,7 +19,8 @@ export class OpdrachtComponent implements OnInit {
   user$;
   opdracht = {
     uitleg: '',
-    punten: ''
+    punten: '',
+    goedgekeurd: 0
   };
 
 
@@ -35,6 +36,7 @@ export class OpdrachtComponent implements OnInit {
 
 
   addOpdracht(form) {
+    console.log(form);
     this.opdrachtService.addOpdracht(form).subscribe(value => console.log(value));
     this.haalOpdrachtenOp();
   }
@@ -57,7 +59,8 @@ export class OpdrachtComponent implements OnInit {
     this.opdrachtService.getOpdrachten().subscribe(response => this.totalOpdrachten = (response));
     this.opdracht = {
       uitleg: '',
-      punten: ''
+      punten: '',
+      goedgekeurd: 0
     };
   }
 
