@@ -9,7 +9,7 @@
       <li class="nav-item" *ngIf="(user$ |async)?.niveau == 1">
         <a class="nav-link" routerLink="/opdrachtAanvragen" routerLinkActive="active">Opdrachten aanvragen</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/opdracht" routerLinkActive="active">Opdrachten aanpassen</a>
       </li>
       <li class="nav-item" *ngIf="(user$ |async)?.niveau == 0">

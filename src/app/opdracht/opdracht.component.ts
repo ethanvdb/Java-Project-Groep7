@@ -3,6 +3,7 @@ import {Observable, Subscription} from 'rxjs';
 import {BeloningenService} from '../services/beloningen.service';
 import {OpdrachtenService} from '../services/opdrachten.service';
 import { Router } from '@angular/router';
+import { GebruikerService} from '../services/gebruiker.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class OpdrachtComponent implements OnInit {
 
   totalOpdrachten;
   opdrachten$: Observable<any>;
-
+  user$;
   opdracht = {
     uitleg: '',
     punten: ''
@@ -23,7 +24,9 @@ export class OpdrachtComponent implements OnInit {
 
 
 
-  constructor(private opdrachtService: OpdrachtenService, private router: Router) {
+  constructor(private opdrachtService: OpdrachtenService, private router: Router, private gebruikerService: GebruikerService) {
+    this.user$ = this.gebruikerService.isLoggedIn$;
+    this.user$.subscribe();
   }
 
   ngOnInit() {
@@ -31,12 +34,12 @@ export class OpdrachtComponent implements OnInit {
   }
 
 
-  addOpdracht(form){
-    this.opdrachtService.addOpdracht(form).subscribe(value=>console.log(value));
+  addOpdracht(form) {
+    this.opdrachtService.addOpdracht(form).subscribe(value => console.log(value));
     this.haalOpdrachtenOp();
   }
 
-  verwijderOpdracht(id){
+  verwijderOpdracht(id) {
     if (confirm('Ben je zeker?')) {
       this.opdrachtService.verwijderOpdracht(id).subscribe();
       this.haalOpdrachtenOp();
@@ -49,7 +52,7 @@ export class OpdrachtComponent implements OnInit {
   }
 
 
-  haalOpdrachtenOp(){
+  haalOpdrachtenOp() {
     this.opdrachten$ = this.opdrachtService.getOpdrachten();
     this.opdrachtService.getOpdrachten().subscribe(response => this.totalOpdrachten = (response));
     this.opdracht = {

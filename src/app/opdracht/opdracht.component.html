@@ -9,18 +9,32 @@
       <th scope="col">Acties</th>
     </tr>
     </thead>
-    <tbody>
-    <tr *ngFor="let opdracht  of (opdrachten$ |async)">
-      <td>{{ opdracht.uitleg}}</td>
-      <td>{{ opdracht.punten}}</td>
-      <td>
+    <tbody *ngIf="(user$ |async)?.niveau == 0">
+    <tr  *ngFor="let opdracht  of (opdrachten$ |async)">
+        <td *ngIf="opdracht.goedgekeurd == 1">{{ opdracht.uitleg}}</td>
+        <td *ngIf="opdracht.goedgekeurd == 1">{{ opdracht.punten}}</td>
+        <td *ngIf="opdracht.goedgekeurd == 1">
+          <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
+        </td>
+        <td *ngIf="opdracht.goedgekeurd == 1">
+          <button type="button" class="btn btn-danger mr-2" (click)="verwijderOpdracht(opdracht._id)"><i class="fas fa-times"i></i></button>
+          <button type="button" class="btn btn-info" (click)="updateOpdracht(opdracht._id)"><i class="fas fa-pen"i></i></button>
+        </td>
+    </tr>
+    </tbody>
+    <tbody *ngIf="(user$ |async)?.niveau == 0">
+    <tr  *ngFor="let opdracht  of (opdrachten$ |async)">
+      <td *ngIf="opdracht.goedgekeurd == 1">{{ opdracht.uitleg}}</td>
+      <td *ngIf="opdracht.goedgekeurd == 1">{{ opdracht.punten}}</td>
+      <td *ngIf="opdracht.goedgekeurd == 1">
         <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
       </td>
-      <td>
+      <td *ngIf="opdracht.goedgekeurd == 1">
         <button type="button" class="btn btn-danger mr-2" (click)="verwijderOpdracht(opdracht._id)"><i class="fas fa-times"i></i></button>
         <button type="button" class="btn btn-info" (click)="updateOpdracht(opdracht._id)"><i class="fas fa-pen"i></i></button>
       </td>
     </tr>
+
     </tbody>
   </table>
 </div>
