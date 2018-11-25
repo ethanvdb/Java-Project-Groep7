@@ -18,12 +18,14 @@ export class HistoriekComponent implements OnInit {
   opdrachten$;
 
 
-  constructor(private gebruikerService: GebruikerService ) { }
+
+  constructor(private gebruikerService: GebruikerService ) {
+    this.user$ = this.gebruikerService.isLoggedIn$;
+  }
 
   ngOnInit() {
     this.voltooideOpdrachten$ = this.gebruikerService.getOpdrachtByGebruikerdId();
-    this.user$ = this.gebruikerService.getGebruikerById();
-    console.log(this.user$);
   }
+
 
 }

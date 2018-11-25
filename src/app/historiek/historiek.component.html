@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-4 border m-2 p-2">
     <h4>{{ (user$ |async ).naam  }} - Historiek</h4>
-    <p>Aantal behaalde punten: {{ (user$ |async).behaaldePunten }}</p>
+    <p>Aantal punten: {{ (user$ |async).behaaldePunten }}</p>
   </div>
   <div class="col-sm-7 border m-2 p-2 m-0">
   <table class="table table-responsive table-striped">
@@ -19,4 +19,4 @@
   </div>
 </div>
 <pre>{{ user$ |async |json }}</pre>
-<pre>{{ opdrachten$ |async |json }}</pre>
+<pre>{{ voltooideOpdrachten$ |async |json }}</pre>

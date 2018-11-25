@@ -12,7 +12,7 @@ import {HttpClient} from '@angular/common/http';
 export class GebruikerService {
 
   readonly LOGIN_URL = "http://localhost:3000/Gebruikers/login";
-  readonly GEBRUIKER_URL = 'http://localhost:3000/gebruikers/5bf3cd92ecdb7c0f707c9ce1';
+  readonly GEBRUIKER_URL = 'http://localhost:3000/gebruikers/';
   readonly VOLTOOIDEOPDRACHT_URL = 'http://localhost:3000/voltooideOpdrachten/gebruiker/';
   readonly OPDRACHT_URL;
 
@@ -61,7 +61,7 @@ export class GebruikerService {
   }
 
 
-  getGebruikerById(): Observable<any> {
-    return this.http.get<any>(this.GEBRUIKER_URL);
+  getGebruikerById(id): Observable<any> {
+    return this.http.get<any>(this.GEBRUIKER_URL+id);
   }
 }

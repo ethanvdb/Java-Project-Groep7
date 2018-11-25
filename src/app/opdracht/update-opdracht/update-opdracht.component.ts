@@ -12,7 +12,7 @@ export class UpdateOpdrachtComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private opdrachtService: OpdrachtenService, private router: Router) { }
   id: string;
-  opdracht: object;
+  opdracht;
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {

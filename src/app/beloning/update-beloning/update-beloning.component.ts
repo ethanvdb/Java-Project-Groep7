@@ -14,7 +14,7 @@ export class UpdateBeloningComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private beloningService: BeloningenService, private router: Router) { }
   id: string;
-  beloning: object;
+  beloning;
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {

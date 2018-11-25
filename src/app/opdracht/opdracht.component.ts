@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
 import {BeloningenService} from '../services/beloningen.service';
 import {OpdrachtenService} from '../services/opdrachten.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-opdracht',
@@ -21,7 +23,7 @@ export class OpdrachtComponent implements OnInit {
 
 
 
-  constructor(private opdrachtService: OpdrachtenService) {
+  constructor(private opdrachtService: OpdrachtenService, private router: Router) {
   }
 
   ngOnInit() {
@@ -34,9 +36,15 @@ export class OpdrachtComponent implements OnInit {
     this.haalOpdrachtenOp();
   }
 
-  verwijderOpdracht(opdracht){
-    const _id = opdracht._id;
-    this.opdrachtService.deleteOpdracht(_id).subscribe();
+  verwijderOpdracht(id){
+    if (confirm('Ben je zeker?')) {
+      this.opdrachtService.verwijderOpdracht(id).subscribe();
+      this.haalOpdrachtenOp();
+    }
+  }
+
+  updateOpdracht(id) {
+    this.router.navigate(['/updateOpdracht/' + id]);
     this.haalOpdrachtenOp();
   }
 

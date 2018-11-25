@@ -43,6 +43,6 @@ export class OpdrachtenService {
 
   verwijderOpdracht(opdracht) {
     console.log(this.OPDRACHT_URL + opdracht);
-    return this.http.delete<any>(this.OPDRACHT_URL + opdracht, this.httpOptions).toPromise();
+    return this.http.delete<any>(this.OPDRACHT_URL + opdracht, this.httpOptions);
   }
 }
