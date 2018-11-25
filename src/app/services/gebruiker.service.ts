@@ -11,7 +11,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class GebruikerService {
 
-  readonly LOGIN_URL = "http://localhost:3000/Gebruikers/login";
+  readonly LOGIN_URL = 'http://localhost:3000/Gebruikers/login';
   readonly GEBRUIKER_URL = 'http://localhost:3000/gebruikers/';
   readonly VOLTOOIDEOPDRACHT_URL = 'http://localhost:3000/voltooideOpdrachten/gebruiker/';
   readonly OPDRACHT_URL;

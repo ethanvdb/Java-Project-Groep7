@@ -13,6 +13,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class OpdrachtenService {
 
   readonly OPDRACHT_URL = 'http://localhost:3000/opdrachten/';
+  readonly VOLTOOIDEOPDRACHT_URL = 'http://localhost:3000/voltooideOpdrachten';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -35,6 +36,10 @@ export class OpdrachtenService {
 
   addOpdracht(opdracht) {
     return this.http.post<any>(this.OPDRACHT_URL, opdracht, this.httpOptions);
+  }
+
+  addVoltooideOpdracht(voltooideOpdracht) {
+    return this.http.post<any>(this.VOLTOOIDEOPDRACHT_URL, voltooideOpdracht, this.httpOptions);
   }
 
   updateOpdracht(opdracht, id) {

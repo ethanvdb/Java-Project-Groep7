@@ -9,7 +9,7 @@
       <th scope="col">Acties</th>
     </tr>
     </thead>
-    <tbody *ngIf="(user$ |async)?.niveau == 0">
+    <tbody >
     <tr  *ngFor="let opdracht  of (opdrachten$ |async)">
         <td *ngIf="opdracht.goedgekeurd == 1">{{ opdracht.uitleg}}</td>
         <td *ngIf="opdracht.goedgekeurd == 1">{{ opdracht.punten}}</td>
@@ -22,19 +22,48 @@
         </td>
     </tr>
     </tbody>
-    <tbody *ngIf="(user$ |async)?.niveau == 1">
+    <tbody>
     <tr  *ngFor="let opdracht  of (opdrachten$ |async)">
       <td>{{ opdracht.uitleg}}</td>
       <td>{{ opdracht.punten}}</td>
       <td>
-        <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
+        <form #addForm="ngForm" (submit)="addVoltooideOpdracht(addForm.value)">
+          <input type="hidden" id="opdrachtId"
+                 required
+                 name="opdrachtId"
+                 #myopdrachtId="ngModel"
+                 [(ngModel)]="voltooideOpdracht.opdrachtId"
+                 value="{{ opdracht._id }}">
+          <input type="hidden" id="gebruikerId"
+                 required
+                 name="gebruikerId"
+                 #mygebruikerId="ngModel"
+                 [(ngModel)]="voltooideOpdracht.gebruikerId"
+                 value="5bf405275560411b5c7b1b5f">
+          <input type="hidden" id="goedgekeurd"
+                 required
+                 name="goedgekeurd"
+                 #mygoedgekeurd="ngModel"
+                 [(ngModel)]="voltooideOpdracht.gebruikerId"
+                  >
+          <input type="hidden" id="uitleg"
+                 required
+                 name="uitleg"
+                 #myUitleg="ngModel"
+                 value="{{ opdracht.uitleg }}"
+                 [(ngModel)]="voltooideOpdracht.gebruikerId"
+          >
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+          <!--<button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>-->
+        </form>
       </td>
       <td>
-        <button type="button" class="btn btn-danger mr-2" (click)="verwijderOpdracht(opdracht._id)"><i class="fas fa-times"i></i></button>
-        <button type="button" class="btn btn-info" (click)="updateOpdracht(opdracht._id)"><i class="fas fa-pen"i></i></button>
+          <button type="button" class="btn btn-danger mr-2" (click)="verwijderOpdracht(opdracht._id)"><i class="fas fa-times"i></i></button>
+          <button type="button" class="btn btn-info" (click)="updateOpdracht(opdracht._id)"><i class="fas fa-pen"i></i></button>
       </td>
     </tr>
-
     </tbody>
   </table>
 </div>

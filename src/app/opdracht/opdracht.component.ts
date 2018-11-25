@@ -21,6 +21,12 @@ export class OpdrachtComponent implements OnInit {
     uitleg: '',
     punten: ''
   };
+  voltooideOpdracht = {
+    opdrachtId: '',
+    gebruikerId: '',
+    uitleg: '',
+    goedgekeurd: '0'
+  };
 
 
 
@@ -36,6 +42,12 @@ export class OpdrachtComponent implements OnInit {
 
   addOpdracht(form) {
     this.opdrachtService.addOpdracht(form).subscribe(value => console.log(value));
+    this.haalOpdrachtenOp();
+  }
+
+  addVoltooideOpdracht(form) {
+    console.log(form);
+    this.opdrachtService.addVoltooideOpdracht(form).subscribe(value => console.log(value));
     this.haalOpdrachtenOp();
   }
 
