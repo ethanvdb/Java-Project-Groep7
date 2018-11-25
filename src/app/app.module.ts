@@ -13,12 +13,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GebruikerService } from './gebruiker.service';
 import { HomeComponent } from './home/home.component';
+import { OpdrachtAanvragenComponent } from './opdracht-aanvragen/opdracht-aanvragen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    OpdrachtAanvragenComponent
   ],
   imports: [
     BrowserModule,

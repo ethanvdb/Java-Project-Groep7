@@ -8,9 +8,11 @@ import { UpdateOpdrachtComponent } from './opdracht/update-opdracht/update-opdra
 
 import {LoginComponent} from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import {OpdrachtAanvragenComponent} from "./opdracht-aanvragen/opdracht-aanvragen.component";
 
 const routes: Routes = [
   {path: 'opdracht', component: OpdrachtComponent},
+  {path: 'opdrachtAanvragen', component: OpdrachtAanvragenComponent},
   {path: 'historiek', component: HistoriekComponent},
   {path: 'beloning', component: BeloningComponent},
   {path: 'login', component: LoginComponent},

@@ -1,0 +1,31 @@
+<h3>Opdrachten</h3>
+<div class="row border mt-2">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Beschrijving</th>
+      <th scope="col">Aantal punten</th>
+      <th scope="col">Goedkeuren</th>
+      <th scope="col">Afwijzen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let voltooideOpdracht  of (voltooideOpdrachten$ |async)">
+      <td>username</td>
+      <td>{{ voltooideOpdracht.uitleg}}</td>
+      <td>
+        punten
+      </td>
+      <td>
+        <button type="submit" class="btn btn-success" (click)="opdrachtGoedkeuren(voltooideOpdracht._id)"><i class="fas fa-check"></i></button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger mr-2" (click)="opdrachtAfwijzen(voltooideOpdracht._id)"><i class="fas fa-times"i></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+

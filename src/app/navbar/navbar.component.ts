@@ -13,11 +13,13 @@ import {GebruikerService} from "../gebruiker.service";
 export class NavbarComponent implements OnInit {
   isCollapsed = true; // true -> verberg menu, false -> toon menu
   isLoggedIn = false;
+  user$;
 
 
 
   constructor(private gebruikerService: GebruikerService) {
-    this.gebruikerService.isLoggedIn$.subscribe(value=>{
+    this.user$ = this.gebruikerService.isLoggedIn$;
+    this.user$.subscribe(value=>{
       if(value){
         this.isLoggedIn = true;
       }
